@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07170d">
+<title>Carriera Calcistica</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="homebody">
+<div class="home">
+  <div class="hero">
+    <div class="ball">⚽</div>
+    <h1 class="logo">CARRIERA<br><span>CALCISTICA</span></h1>
+    <p class="tag">Dai 16 ai 36 anni: dal settore giovanile alla leggenda</p>
+  </div>
+
+  <div class="menu">
+    <button class="btn" id="carica" onclick="location='carriera.html'">▶ Carica<small id="info"></small></button>
+    <button class="btn" id="nuova" onclick="nuova()">🆕 Nuova Partita</button>
+    <button class="btn" onclick="toggle(true)">⚙️ Opzioni</button>
+  </div>
+  <div class="ver">v0.1</div>
+</div>
+
+<div class="overlay" id="opz" onclick="if(event.target===this)toggle(false)">
+  <div class="sheet">
+    <h2>Opzioni</h2>
+    <button class="btn" onclick="cancella()">🗑 Cancella salvataggio</button>
+    <button class="btn primary" onclick="toggle(false)">Chiudi</button>
+  </div>
+</div>
+
+<script>
+const KEY="carriera_save";
+const $=id=>document.getElementById(id);
+function leggi(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
+function aggiorna(){
+  const s=leggi();
+  $("carica").style.display=s?"block":"none";
+  $("nuova").classList.toggle("primary",!s);
+  $("carica").classList.toggle("primary",!!s);
+  if(s)$("info").textContent=(s.nome?s.nome+" · ":"")+"Età "+s.eta+" · "+s.squadra;
+}
+function nuova(){
+  if(leggi()&&!confirm("Hai già un salvataggio. Cancellarlo e ricominciare?"))return;
+  const nome=prompt("Come si chiama il tuo giocatore?","Marco Rossi");
+  if(nome===null)return;
+  localStorage.setItem(KEY,JSON.stringify({
+    nome:nome.trim()||"Giocatore",eta:16,sett:1,
+    e:80,f:40,h:60,s:10,fama:5,gol:0,squadra:"Real Borgo U17"
+  }));
+  location="carriera.html";
+}
+function toggle(on){$("opz").classList.toggle("on",on)}
+function cancella(){
+  if(confirm("Cancellare il salvataggio?")){localStorage.removeItem(KEY);toggle(false);aggiorna();}
+}
+aggiorna();
+</script>
+</body>
+</html>
