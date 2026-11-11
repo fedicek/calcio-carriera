@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#070b14">
+<title>Carriera</title>
+<link rel="stylesheet" href="css/carriera.css">
+</head>
+<body class="app">
+
+<header class="top">
+ <button class="back" onclick="location='index.html'" aria-label="Menu">‹</button>
+ <h1>Carriera</h1>
+ <span class="pill" id="sub"></span>
+</header>
+
+<section class="card player">
+ <div class="avatar" id="avatar"></div>
+ <div class="pinfo"><h2 id="pn"></h2><p id="pm"></p></div>
+ <div class="ovr"><b id="ovr"></b><small>OVR</small></div>
+</section>
+
+<section class="chips">
+ <div class="chip">💶<div><span id="soldi"></span><small>Conto in banca</small></div></div>
+ <div class="chip">⚽<div><span id="gol"></span><small>Gol in carriera</small></div></div>
+</section>
+
+<section class="card stats" id="stats"></section>
+
+<h3 class="sec">Cosa fai questa settimana?</h3>
+<section class="choices" id="choices"></section>
+
+<h3 class="sec">Classifica</h3>
+<section class="card">
+ <table>
+  <thead><tr><th>#</th><th>Squadra</th><th>G</th><th>DR</th><th>Pt</th></tr></thead>
+  <tbody id="tab"></tbody>
+ </table>
+</section>
+
+<footer class="dock">
+ <div class="next" id="next"></div>
+ <button class="cta" id="go" disabled>Prossima settimana ▶</button>
+</footer>
+
+<div class="full" id="match" hidden>
+ <div class="score">
+  <div class="tm"><i class="crest" id="cA"></i><span id="nA"></span></div>
+  <div class="res"><b id="sc">0 - 0</b><small id="mn">0'</small></div>
+  <div class="tm"><i class="crest alt" id="cB"></i><span id="nB"></span></div>
+ </div>
+ <div class="prog"><i id="pg"></i></div>
+ <div id="feed"></div>
+ <div class="panel" id="dec" hidden></div>
+ <div class="panel" id="end" hidden></div>
+</div>
+
+<script src="js/game.js"></script>
+</body>
+</html>
